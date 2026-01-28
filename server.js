@@ -20,10 +20,12 @@ mongoose.connect(MONGODB_URI)
 const categoriesRoutes = require('./routes/categories');
 const productsRoutes = require('./routes/products');
 const ordersRoutes = require('./routes/orders');
+const cloudinaryRoutes = require('./routes/cloudinary');
 
 app.use('/api/categories', categoriesRoutes);
 app.use('/api/products', productsRoutes);
 app.use('/api/orders', ordersRoutes);
+app.use('/api/cloudinary', cloudinaryRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

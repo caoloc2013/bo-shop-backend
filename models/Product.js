@@ -1,5 +1,17 @@
 const mongoose = require('mongoose');
 
+// Sub-schema for size with stock status
+const SizeSchema = new mongoose.Schema({
+  size: { 
+    type: String, 
+    required: true 
+  },
+  inStock: { 
+    type: Boolean, 
+    default: true 
+  }
+}, { _id: false });
+
 const ProductSchema = new mongoose.Schema({
   categoryId: { 
     type: String,
@@ -24,9 +36,7 @@ const ProductSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
-  sizes: [{ 
-    type: String 
-  }]
+  sizes: [SizeSchema]
 }, { 
   timestamps: true,
   toJSON: {
