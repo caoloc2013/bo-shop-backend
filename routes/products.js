@@ -35,6 +35,7 @@ router.post('/', async (req, res) => {
       price: req.body.price,
       images: req.body.images || [],
       videoUrl: req.body.videoUrl || '',
+      depositPercent: req.body.depositPercent || 0,
       sizes: req.body.sizes || []
     });
     const saved = await product.save();
@@ -56,6 +57,7 @@ router.put('/:id', async (req, res) => {
         price: req.body.price,
         images: req.body.images,
         videoUrl: req.body.videoUrl,
+        depositPercent: req.body.depositPercent || 0,
         sizes: req.body.sizes
       },
       { new: true }

@@ -38,8 +38,12 @@ const OrderSchema = new mongoose.Schema({
   size: String,
   status: { 
     type: String, 
-    enum: ['PENDING', 'CONFIRMED'], 
+    enum: ['PENDING', 'WAITING_PAYMENT', 'CONFIRMED'], 
     default: 'PENDING' 
+  },
+  totalDeposit: {
+    type: Number,
+    default: 0
   },
   createdAt: { 
     type: Number, 

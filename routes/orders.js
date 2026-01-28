@@ -37,7 +37,8 @@ router.post('/', async (req, res) => {
       productId: req.body.productId,
       productName: req.body.productName,
       size: req.body.size,
-      status: 'PENDING',
+      status: req.body.status || 'PENDING',
+      totalDeposit: req.body.totalDeposit || 0,
       createdAt: Date.now()
     });
     const saved = await order.save();
