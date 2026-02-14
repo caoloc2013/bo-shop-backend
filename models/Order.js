@@ -14,7 +14,21 @@ const AddressSchema = new mongoose.Schema({
   district: String,
   ward: String,
   detail: String,
-  formattedAddress: String
+  formattedAddress: String,
+  // GHN address codes for shipping sync
+  provinceId: Number,
+  districtId: Number,
+  wardCode: String
+}, { _id: false });
+
+const ShippingSchema = new mongoose.Schema({
+  carrierName: { type: String, default: 'GHN' },
+  ghnOrderCode: String,
+  trackingNumber: String,
+  shippingFee: Number,
+  expectedDelivery: String,
+  shippingStatus: { type: String, default: '' },
+  createdAt: { type: Number, default: () => Date.now() }
 }, { _id: false });
 
 const OrderSchema = new mongoose.Schema({
@@ -38,10 +52,15 @@ const OrderSchema = new mongoose.Schema({
   size: String,
   status: { 
     type: String, 
-    enum: ['PENDING', 'WAITING_PAYMENT', 'CONFIRMED'], 
+    enum: ['PENDING', 'WAITING_PAYMENT', 'CONFIRMED', 'SHIPPING', 'DELIVERED'], 
     default: 'PENDING' 
   },
   totalDeposit: {
+    type: Number,
+    default: 0
+  },
+  shipping: ShippingSchema,
+  shippingFee: {
     type: Number,
     default: 0
   },
