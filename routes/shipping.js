@@ -143,6 +143,7 @@ router.post('/create-order', async (req, res) => {
     const cfg = await getGHNConfig();
     const {
       to_name, to_phone, to_address, to_ward_code, to_district_id,
+      to_ward_name, to_district_name, to_province_name,
       weight, insurance_value, cod_amount, content, items, note
     } = req.body;
 
@@ -159,6 +160,9 @@ router.post('/create-order', async (req, res) => {
       to_name,
       to_phone,
       to_address,
+      to_ward_name: to_ward_name || '',
+      to_district_name: to_district_name || '',
+      to_province_name: to_province_name || '',
       to_ward_code,
       to_district_id: parseInt(to_district_id),
       weight: weight || 500,
